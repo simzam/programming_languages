@@ -1,0 +1,104 @@
+* Coursera Programming Languages Coursera
+** Introduction
+I have used Python for various tasks mostly related educational applications, as a student or as a teacher. However, the underlying concepts remain a bit of a mystery to me. What is a variable really?
+
+The course is not really about /the/ programming language, instead of focusing on getting running applications we take a step back and study programming languages in general.
+
+** The Pieces of a Programming Language
+The pieces of learning and defininf a programming language:
+
+1) *syntax*: how do you write the various parts of the language.
+   What is the form of a for loop? Where is the verb placed?
+
+2) *semantics*: what do the language feature mean? how are the evaluated?
+   The *syntax* is itself not enough to understand a language. Creating a mechanism for evaluating syntax is nothing compared to evaluate syntax.
+
+3) *idioms*: what are the common approaches to using the language features to express computations?
+   If compared to learning a new human language, this is all
+
+4) *libraries*: what is there? how to use it inside your own code.
+
+   like tech for old days. The nail can be driven into the wood with a rock. But why use it when there a hammer library.
+
+5) *tools*:
+
+This course is all about 1, 2, and 3! This is the juice
+
+** The *ML* Programming Language
+The *ML* programming language is a general-purpose first surfacing in 1973. It is not widely used anymore. Mr. Grossman makes a point of the benefit of using an unfamiliar language. He wants us to shed previous knowledge and study ML with a foucs on the underlying mechanisms. These concept would remain hidden without prevous practical coding experience; looking for a forest if you have never seen a tree.
+
+I have never used a functional language. Well, I have copy-pasted some Emacs code. Notes some pecularities: setting variables with equal signs, nested parenthesis.
+
+An ML program is a sequence of *bindings*. Each binding get _type-checked_ if the the binding pass the check/test it's _evaluated_. When the binding passes the check/test another layer is added to the static environment.
+
+ML does not look down! Different from the Python 3, the visibility of bindings is limited to the ones evaluated earlier in the execution. SHAKY HERE.
+
+The _static environment_ takes care of the inferred type of a binding. The expression _context_ can be used equally as static environment. What type (TODO if any) a binding has depends on the static environment.
+
+Variable binding does not equal variable assignment. Argue the case! [[https://ashtonkemerling.com/posts/binding-vs-assignment/][binding vs assignment in Python]]
+
+There multiple kinds of bindings, start with studying variable binding. ML variable binding has syntax:
+
+*val x = e;$
+
+*val* is a keyword (like *for*, *def*, etc.). TODO What is a keyword?
+*x* can be any variable
+*e* can be any expression
+
+The semicolon is optional in a file. But tell the REPL to let the *interpreter* know that binding is complete. This is the *syntax* of the expression. The semanticw
+
+A *value* is a completely evaluated expression, *8 + 1* not a value, *9* is a value. All values are expressions. All expressions are not values.
+
+*** TODO It is completely specified and verified using formal semantics.
+what does this really say about a language
+
+** Analysis of expressions
+The course introduces a format for defining different kinds of expressions.
+
++ Name of expression
+  1. Syntax: The format of the expression
+  2. Type-checking: Update the static environment for the expression
+  3. Evaluation: Update the dynamic environment for the expression
+
+Below is an example from the lecture notes:
+
++ Addition
+  1. Syntax: *e1+e2* where *e1* and *e2* are expressions
+  2. Type-checking: type *int*, but only is *e1* and *e2* have type *int* in the same static environment, else does not type-check.
+  3. Evaluation: evaluate *e1* to *v1* and *e2* to *v2* in the same dynamic environment and then produce the sum of *v1* and *v2*
+
+** TODO Variables are *Immutable* and *shadowing*
+When the value of a variable is declared it is not assignment, I struggle somhow with how understanding the concept of *immutability*.
+
+** TODO The read-eval-print-loop
+The *REPL* is a language shell similiar to the $iPython$-shell for doing computations in *Python*. The advantage of using a REPL is fast testing of syntax aswell as semantics (TODO ??). Debugging can be simplified and exploration of known or unknown code. When using the REPL in ML, it is convienient to add a sequence of bindings from a file; *use "foo.sml";*
+does the trick.
+
+Please note! By using multiple *use* statements in the REPL it will create a different and static environment for each additional use. Use it once, if you need to run again just restart the REPL. This ensures that we can keep working in a predictable environment. It is generally a good idea to avoid shadowing.
+
+** Function Bindings
+Looked a variable bindings, let's turn to _functional bindings_
+
+#+begin_src sml
+  fun pow (x:int, y:int) = (* correct only for y >= 0 *)
+      if y=0
+      then 1
+      else x * pow(x,y-1)
+#+end_src
+
+Looks like something I've seen before. No *return*?
+
+1) *syntax*: *fun x0 (x1 : t1, ... , xn : tn) = e*
+   fun is keyword, x0 is name of function, n arguments x1, ... , xn are arguments of corresponding types t1, ... , tn. The body of the function is *e*.
+2) *type-checking*:
+
+   See pattern matching (TODO insert reference.
+
+
+** TODO Pairs and Other Tuples
+
+** TODO Lists
+
+** TODO Let Expressions
+
+** TODO Options
